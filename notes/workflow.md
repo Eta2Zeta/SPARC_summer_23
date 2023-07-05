@@ -34,3 +34,7 @@
     - This post procesor doesn't really do much and what I need to do will require more than this to get something useful. 
     - The `pnp_losses.py` might not find the output file `ascot_jobID.h5`. In this case, we will need to do alias `copy_to_runs jobID`
 - The output result to appear in the same directory, the runs directory. It will be called `ascot_jobID_pnp_losses.pdf`. You can view it in `gv ascot_jobID_pnp_losses.pdf`
+
+
+## Debugging
+- view the h5 input file: `a5editoptions group_go_7002.h5`
