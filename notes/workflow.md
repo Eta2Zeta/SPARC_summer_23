@@ -38,3 +38,4 @@
 
 ## Debugging
 - view the h5 input file: `a5editoptions group_go_7002.h5`
+- 

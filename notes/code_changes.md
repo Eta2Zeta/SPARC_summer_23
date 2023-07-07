@@ -111,3 +111,6 @@ Are the gyros the same?  True
 
 - In the group_go_files, I made some prompt bold for easier readability
 
+- In pnp_losses.py I added a line to print out the total cpu time for all markers. 
+
+- In get_ascot_AT.py I added some comments for readability 
