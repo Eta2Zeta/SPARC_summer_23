@@ -4,8 +4,8 @@
 
 The arithmetics of linearly scaling the number of pitches as a functino of rho. 
 - Using rho_interpolator to get the rho at each RZ gird point. 
-- Make the gridRZ_Rhos_scale_pre as a function of rho: gridRZ_Rhos_scale_pre$(\rho) = 1 - \rho$. So that it is 0 at the center and 1 on the edge. 
-- Make this linear function scale with our max_Npitch_scale_factor $m$ and called it gridRZ_Rhos_scale_pre2: gridRZ_Rhos_scale_pre2$(\rho) = m \times (1 - \rho)$. 
+- Make the gridRZ_Rhos_scale_pre as a function of rho: gridRZ_Rhos_scale_pre $(\rho) = 1 - \rho$. So that it is 0 at the center and 1 on the edge. 
+- Make this linear function scale with our max_Npitch_scale_factor $m$ and called it gridRZ_Rhos_scale_pre2: gridRZ_Rhos_scale_pre2 $(\rho) = m \times (1 - \rho)$. 
 
 # Documentation for geqdsk
 
