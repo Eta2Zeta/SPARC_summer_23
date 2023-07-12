@@ -71,16 +71,31 @@ def plot_histogram(data, xlabel='', title='', bins=50, rwidth=1, color='c', pdf=
 # Plots based on data input types
 def group_go_data_plot():
     data = pd.read_csv('group_go_7000_vdistribution.txt', delim_whitespace=True, header=None)
-    Nmrk = 100
-    vmax = 12950000
+
+    
     vr = data[0].to_numpy()
     vz = data[1].to_numpy()
     vphi = data[2].to_numpy()
     bhats = data[3].to_numpy()
     pitches = data[6].to_numpy()
     gyro_angles = data[7].to_numpy()
-    rzphi(vr,vz,vphi,vmax,Nmrk)
+    vtot = np.sqrt(vr**2 + vz**2  + vphi**2)
 
+    vmax = np.max(vtot)
+
+    Nmrk = vr.size
+    
+    # fraction of the data to plot
+    percentage = 0.1
+    random_ii = np.random.choice(Nmrk,size = int(percentage*Nmrk),replace=False)
+    Nmrk_mini = len(random_ii)
+    print(f"we are plotting {Nmrk_mini} markers")
+
+    # Plot
+    vr_mini = vr[random_ii]
+    vphi_mini = vphi[random_ii]
+    vz_mini = vz[random_ii]
+    rzphi(vr_mini,vphi_mini,vz_mini,vmax,Nmrk_mini)
 
 def alexa_data_plot():
     # reading data
@@ -93,7 +108,8 @@ def alexa_data_plot():
     vphi = df['vphi'].to_numpy()
     vz = df['vz'].to_numpy()
     vtot = np.sqrt(vr**2 + vphi**2 + vz**2)
-    print(np.max(vtot),np.min(vtot))
+
+
     vmax = np.max(vtot)
 
 
@@ -116,5 +132,5 @@ def alexa_data_plot():
 
 
 
-
-alexa_data_plot()
+group_go_data_plot()
+# alexa_data_plot()
