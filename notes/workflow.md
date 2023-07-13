@@ -23,6 +23,7 @@
 - Use command: `sqs` to check the submit time of the job, if the job has started and what time the job has been started. 
 
 ## Post-processing
+### Basic
 - Check that the job has indeed finished. Do this by going to runs: `toruns` and do `mycputime jobID`, e.g. `mycputime 10229215`. 
 - Knowing that the job is run, we go to the actual output file by doing `tooutput`
 - Find that the output file is indeed in there: `ls -ltr`. You will see the most recent directory be at the bottom. It will be called `ascot_work_jobID`, e.g. `ascot_work_10229215`. This directory is created by the run_script, which is `perlmutter_7002.sh`
@@ -34,6 +35,13 @@
     - This post procesor doesn't really do much and what I need to do will require more than this to get something useful. 
     - The `pnp_losses.py` might not find the output file `ascot_jobID.h5`. In this case, we will need to do alias `copy_to_runs jobID`
 - The output result to appear in the same directory, the runs directory. It will be called `ascot_jobID_pnp_losses.pdf`. You can view it in `gv ascot_jobID_pnp_losses.pdf`
+
+### Compare distributions
+- Enter `python`
+- Do `import compare_distributions as cd`
+- Then `cd.compare_distributions()`
+- Hit enter many times and write the suffix for the file after `Suffix for pdf filename( default=) `
+- Accept many default settings again and then type the ascot output file name `ascot_jobID.h5`, e.g. `ascot_10229215.h5`. Then the same thing for the second ascot output file. 
 
 
 ## Debugging
