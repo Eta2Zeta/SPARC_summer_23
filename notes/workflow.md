@@ -44,6 +44,11 @@
 - Accept many default settings again and then type the ascot output file name `ascot_jobID.h5`, e.g. `ascot_10229215.h5`. Then the same thing for the second ascot output file. 
 
 
+### Plotting full orbits
+- Start the program: `python $dir_mypython/plot_orbits_2023a.py`
+- Give it the output file: `ascot_10229215.h5`
+- Hit enters
+
 ## Debugging
 - view the h5 input file: `a5editoptions group_go_7002.h5`
 - 
