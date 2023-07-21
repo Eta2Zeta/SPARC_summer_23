@@ -1,5 +1,35 @@
 # Documentation for Marker_sets
 
+## `define_prt_markers_uniform(settings)` Function
+Purpose of this module:  generate an ensemble of markers that is distributed uniformily (rather than randomly) in phase space. But this is not quite true ...
+
+To be precise, this module generates an ensemble of markers that is distributed uniformily in [R,Z] space and uniformily in velocity-direction. Alas, being uniformily in [R,Z] space is not quite the same as being distributed uniformily in 3D space.  The reason for this is that the volume element in toroidal coordinates is $dV = (2 \pi R d\phi) * dR * dZ$.
+
+So if we really wanted to construct a marker ensemble that is distributed uniformily in 3D space, we would have to figure out how to properly deal with that.  Presumably, there is a simple way to do that (maybe a homework assignment for an energetic student?) but instead, this module simply constructs the marker ensemble that is uniformily distributed in [R,Z] space, and then adds an additional weighting factor that is proportional to Rmajor.
+### Input
+`settings` (dictionary): A set of dictionary key and value pairs that specify how the ensemble of markers should be constructed on a fixed grid. Below are the values required for the key and value paris.    
+
+    #    Nmrk    nominal total number of markers             (input)
+    #    Nphi    number of grid points in the phi direction  (input)
+    #    Npitch  number of grid points in pitch              (input)
+    #    Ngyro   number of grid points in gyro-angle         (input)
+    #    NR      computed to yield approx Nmrk markers and   (computed)
+    #            so that the grid resolution is about the
+    #            same in the radial and vertical directions
+    #    NZ      computed to yield approx Nmrk markers and   (computed)
+    #            so that the grid resolution is about the
+    #            same in the radial and vertical directions
+#### General Settings
+##### `Set`
+- `set=1`   fixed grid distribution for non relativistic alpha particles
+- `set=2`   fixed grid distribution for relativistic electrons
+
+#### `Marker Option`
+- `Marker_option = 1` if we want to pass in the total number of markers and calculate the needed NZ and NR
+- `Marker_option = 2` if we want to pass in Nr and Nz sperately, which eventually spitout the final total number of markers
+#### Ensemble size
+##### `Nmrk`
+
 ## Artifically adding more makrers in pitch dimension in the center of the plasma `set = 3`
 
 - The arithmetics of linearly scaling the number of pitches as a function of $\rho$. 
