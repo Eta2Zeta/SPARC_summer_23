@@ -1,4 +1,4 @@
-# Run Tree Management Script
+# new_run.py Documentation
 
 This Python script provides functionality to manage a tree-like structure of run files. It allows you to add, delete, and view relationships between different runs, which are defined by their parent and child relationships. This is especially useful for managing complex project structures.
 
