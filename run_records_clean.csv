@@ -1,0 +1,3 @@
+﻿runID,parent,slurmID,Nmrk,Scale Factor,Notes,
+7113,7111,12055080,5082,6,Rerunning with more max cputime, 
+7114,7112,12060152,5082,6,Rerunning with more max cputime,
