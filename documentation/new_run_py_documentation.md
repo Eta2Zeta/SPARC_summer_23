@@ -26,3 +26,8 @@ This Python script provides functionality to manage a tree-like structure of run
     - To print a subtree: `python new_run.py my_run_tree print_tree 7011`
     - To delete a run: `python new_run.py my_run_tree delete_run 7011`
     When you try to delete a run, you will be asked for confirmation. If you agree, both the specified run and its associated files will be deleted.
+
+
+## Notes
+
+Hongyu's runs are documented in `run_tree.json`. When referring to it in the program, it should be just `run_tree`, without the suffix.
