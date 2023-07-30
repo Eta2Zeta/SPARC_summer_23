@@ -24,13 +24,29 @@ So if we really wanted to construct a marker ensemble that is distributed unifor
 - `set=1`   fixed grid distribution for non relativistic alpha particles
 - `set=2`   fixed grid distribution for relativistic electrons
 
-#### `Marker Option`
+##### `Marker Option`
+There are two options for user to define a set of markers. 
+1. Define the total number of markers, then the number of markers in r and z dimensions are determined by the total number of markers Nmrk and the number of markers in other dimensions and the center scaling factor: `Npitch`, `Ngyro`, `Nphi`, and `Maxmax_Npitch_scale_factor`. The reason where `Nr` and `Nz` here are the dependent variables is that `Npitch` plays a often more significant role in determining the particle interactions in the plasma, we therefore want to insure the value of `Npitch` stays fixed. The reason why we care about the total number of markers is that the CPU time is proportional to the number of markers. Another crucial reason why we want to pass in the total number of markers is when we compare the result of ASCOT5 to other simulation programs like spiral, we want to insure we have similar levels of statistics. It is thus often needed to have similar number of makrers. 
+
+The down side of this option is when the total number of markers are defined to be too small. The the grid resolution in the R and Z directions will be too coarse. We therefore offer user another option to spefify the values of number of markers in all dimensions directly and then calculate the final number of markers. 
+
+2. Define the number of markers by defining the number of markers in every dimension plus the `Maxmax_Npitch_scale_factor`. The downside of this approach is that there is no control over the total number of markers and the total number of markers can often end up too large for the pursuit of fine distribution in the marker grid. 
+
 - `Marker_option = 1` if we want to pass in the total number of markers and calculate the needed NZ and NR
 - `Marker_option = 2` if we want to pass in Nr and Nz sperately, which eventually spitout the final total number of markers
 #### Ensemble size
 ##### `Nmrk`
 
-## Artifically adding more makrers in pitch dimension in the center of the plasma `set = 3`
+## Algorithm calculating the number of `Nr` and `Nz` needed to make the number of total markers closest to the user specified value
+The algorithm currently is located in hz_utilities named `get_NRNZ`.
+This algorithm starts by guessing the rough number of `Nr` and `Nz` needed by doing a simple math. Then it iteratively find the optimal solution: 
+1. We can do a simple estimation of the volumn of a cone + a cylinder for the total number of markers and from there get the formula for `Nr` and `Nz`. The volumn for the cone is $\frac{1}{3} \frac{Nr}{2} \frac{Nz}{2} \pi \text{Npitch} \text{Scale_factor} = \frac{1}{3} \frac{\pi}{2} \text{Scale_factor} \text{Nr}^2 \text{Npitch}$ whereas for the cylinder it is $ \frac{1}{3} \frac{\pi}{2} \text{Scale_factor} \text{Nr}^2 \text{Npitch}$, we realize after extracting out the common factors, we get in the parenthesis $\frac{Scale_factor}{3} + 1$. After some algebra, we get $\text{Nmrk} = \frac{\pi}{2} \text{Nr}^2 \text{Npitch} \text{Ngyro} \text{Nphi} (\frac{Sale_factor}{3} + 1)$, form which we can estimate the `Nr` and `Nz` for our first guess. In the actual code, we use a much more emperical constant instead of $\frac{\pi}{2}$ due to all the approximations that we made. Now the constant we add in the front is 0.65. 
+2. We gradually increase/degress the `Nr` or `Nz` to calcuate the new total number of markers, depending on if the currently calculated `Nmrk` is too low or too high. 
+3. We record the values of `Nr` and `Nz` where we have gotten the closest to the desired `Nmrk`, once we have see by further increasing or decresing `Nr` or `Nz`, the new total number of markers is father apart the desired `Nmrk` than our current "best" `Nr` and `Nz` values, we return the "best" `Nr` and `Nz` values. 
+
+Note, since we only increase or decrse the `Nr` or `Nz` by one each time, when the number of markers is incrediblly large, the algorithm may take a long time to run. However, in any reasonable range for the number of markers that a cluster can calculate, the algorithm is able to finish in a reasonable time. 
+
+## Artifically adding more makrers in pitch dimension in the center of the plasma 
 
 - The arithmetics of linearly scaling the number of pitches as a function of $\rho$. 
   - Using rho_interpolator to get the rho at each RZ gird point. 

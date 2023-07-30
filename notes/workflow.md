@@ -49,6 +49,12 @@
 - Give it the output file: `ascot_10229215.h5`
 - Hit enters
 
+
+### Checking aborted markers
+`grep -A 3 abort  slurm-123456789.out`
+
+
 ## Debugging
 - view the h5 input file: `a5editoptions group_go_7002.h5`
 - 
+
