@@ -58,3 +58,32 @@
 - view the h5 input file: `a5editoptions group_go_7002.h5`
 - 
 
+## Ploting Mhd
+```text
+myenv) sscott@perlmutter:login14:/global/cfs/cdirs/m3195/ascot/ascot5/runs> python
+Python 3.8.16 (default, Mar  2 2023, 03:21:46) 
+[GCC 11.2.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import plot_mhd as PM
+>>> PM.driver_deltaB_2D_norm()
+name of h5 file: ( default=group_go_2317.h5)   group_go_2319.py
+  suffix for pdf file: ( default=)   July
+Enter name of equlibrium file: ( default=geqdsk_freegsu_run0_mod_00.geq)    <cr>
+  enter 1 to define custom plot size and limits: ( default=0)   1
+Minimum Rmajor [m]: ( default=1.6)   <cr>
+Maximum Rmajor [m]: ( default=2.15)   <cr>
+Minimum Z [m]:      ( default=-0.35)   <cr>
+Maximum Z [m]:      ( default=0.35)   <cr>
+horizontal size of plot (inches): ( default=6.0)   <cr>
+vertical size of plot (inches): ( default=6.872727272727276)   <cr>
+ fixed-phi [degrees]: ( default=0.0)   <cr>
+[R,Z] grid resolution [cm]:      ( default=0.5)   <cr>
+   ... NR =  109
+   ... NZ =  140
+Number of color levels to use: ( default=15)   <cr>
+   ... some colormaps:  seismic, gnuplot2, rainbow, gist_ranbow
+Enter colormap: ( default=rainbow)   <cr>
+single Rmajor to write detailed delta_B: ( default=2.01)   <cr>
+single Z      to write detailed delta_B: ( default=0.25)   <cr>
+Enter 1 to show detail position: ( default=1)   <cr
+```
